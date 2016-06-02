@@ -4,4 +4,15 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/eggheadgames/android-analytics-helper/blob/master/LICENSE)
 
 # android-analytics-helper
-Simple library to wrap Google analytics
+Use `init(Context context, int trackingIdResource, int globalTrackerXml, boolean dryRun)` after instance creation of `Analytics`.
+
+For removing warning from Lint about unused string `ga_trackingId` we use it from string values and from `globalTrackedXml`
+
+```
+  String trackingId = context.getString(trackingIdResource);
+  if(trackingId.isEmpty()) {
+    this.mTracker = analytics.newTracker(globalTrackerXml);
+  } else {
+    this.mTracker = analytics.newTracker(trackingId);
+  }
+```
