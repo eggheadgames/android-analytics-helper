@@ -121,7 +121,7 @@ public class Analytics {
         logEvent(SCREEN_EVENT, attributes);
     }
 
-    private void logEvent(String eventName, Map<String, String> attributes) {
+    public void logEvent(String eventName, Map<String, String> attributes) {
         AnalyticsEvent event = analytics.getEventClient().createEvent(eventName);
         if (attributes != null) {
             for(Map.Entry<String, String> item : attributes.entrySet()) {
@@ -131,7 +131,7 @@ public class Analytics {
         analytics.getEventClient().recordEvent(event);
     }
 
-    private void logEvent(String eventName) {
+    public void logEvent(String eventName) {
         logEvent(eventName, null);
     }
 }
