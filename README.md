@@ -4,15 +4,15 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/eggheadgames/android-analytics-helper/blob/master/LICENSE)
 
 # android-analytics-helper
-Use `init(Context context, int trackingIdResource, int globalTrackerXml, boolean dryRun)` after instance creation of `Analytics`.
+Use `init(Context context, String appId, String cognitoId)` to initialize newly created instance of `Analytics` class.
 
-For removing warning from Lint about unused string `ga_trackingId` we use it from string values and from `globalTrackedXml`
+where
 
-```
-  String trackingId = context.getString(trackingIdResource);
-  if(trackingId.isEmpty()) {
-    this.mTracker = analytics.newTracker(globalTrackerXml);
-  } else {
-    this.mTracker = analytics.newTracker(trackingId);
-  }
-```
+`appId` - Amazon Mobile Analytics App ID.
+
+`cognitoId` - Amazon Cognito Identity Pool ID.
+
+Amazon Analytics does not send reported events automatically, instead - developer is responsible for starting/pausing analytics session.
+Current library has handy helper methods (`pause()` and `resume()`) to pause/resume analytics session. The most convenient place to use them are `onPause`/`onResume` methods of your Activity.
+
+
